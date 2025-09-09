@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White #FFFFFF */
+    --foreground: 0 0% 9%; /* Dark Gray/Black for text */
+    --card: 0 0% 100%; /* White #FFFFFF */
+    --card-foreground: 0 0% 9%; /* Dark Gray/Black for text */
+    --popover: 0 0% 100%; /* White #FFFFFF */
+    --popover-foreground: 0 0% 9%; /* Dark Gray/Black for text */
+    --primary: 174 100% 29%; /* Rich Teal #004D40 */
+    --primary-foreground: 0 0% 100%; /* White #ffffff */
+    --secondary: 166 22% 89%; /* Mint Green #E0F2F1 */
+    --secondary-foreground: 174 100% 29%; /* Rich Teal #004D40 */
+    --muted: 0 0% 96%; /* Light Gray */
+    --muted-foreground: 0 0% 45%; /* Medium Gray */
+    --accent: 174 100% 29%; /* Rich Teal #004D40 */
+    --accent-foreground: 0 0% 100%; /* White #ffffff */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89%; /* Light Gray Border */
+    --input: 0 0% 100%; /* White Input Background */
+    --ring: 174 100% 29%; /* Rich Teal #004D40 */
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: #FFFFFF;
+    min-height: 100vh;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg;
+  }
+
+  .glass-card {
+    @apply bg-white/95 backdrop-blur-sm border border-gray-200 shadow-xl rounded-xl;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-pulse-neon {
+    animation: pulseNeon 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseNeon {
+    0%, 100% {
+      opacity: 0.1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.05);
+    }
+  }
+
+  .green-glow {
+    box-shadow: 0 4px 20px rgba(0, 77, 64, 0.15), 0 2px 8px rgba(0, 77, 64, 0.1);
+  }
+
+  .green-glow:hover {
+    box-shadow: 0 8px 30px rgba(0, 77, 64, 0.25), 0 4px 12px rgba(0, 77, 64, 0.15);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #F8BBD9 0%, #87CEEB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .clean-grid {
+    background-image: linear-gradient(rgba(0, 77, 64, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 77, 64, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #004D40, #E0F2F1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #004D40, #B2DFDB);
+}
+
+/* Enhanced Mobile menu improvements */
+@media (max-width: 360px) {
+  .mobile-menu-panel {
+    width: 95vw !important;
+  }
+}
+
+/* Prevent overscroll on iOS */
+.mobile-menu-content {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+/* Safe area support for mobile devices with notches */
+@supports (padding: max(0px)) {
+  .mobile-nav-safe {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-top: max(1.5rem, env(safe-area-inset-top));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Fix for potential z-index issues */
+.mobile-menu-overlay {
+  isolation: isolate;
+}
+
+/* Enhanced animations for mobile menu */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobile menu button pulse effect */
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.mobile-menu-button-active {
+  animation: buttonPulse 2s infinite;
+}
+
+/* Improved glass effect for mobile */
+.mobile-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile menu item hover effect */
+.mobile-nav-item {
+  position: relative;
+}
+
+.mobile-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+  transition: left 0.5s;
+  z-index: -1;
+}
+
+.mobile-nav-item:hover::before {
+  left: 100%;
+}
+
+/* Accessibility improvements */
+.mobile-menu-overlay:focus-within {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-panel,
+  .mobile-menu-overlay,
+  .mobile-nav-item,
+  .mobile-menu-content * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
